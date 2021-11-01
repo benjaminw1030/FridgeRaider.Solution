@@ -5,33 +5,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using fridgeraider.Models;
+using FridgeRaider.Models;
 
-namespace fridgeraider.Controllers
+namespace FridgeRaider.Controllers
 {
-    public class HomeController : Controller
+  public class HomeController : Controller
+  {
+    public IActionResult Index()
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+      //viewbag.meals = user.meals (latest 3)
+      //viewbag.fridge = user.fridge (latest 3)
+      var randomMeals = Meal.GetRandomMeals(EnvironmentVariables.ApiKey);
+      return View(randomMeals);
     }
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+      return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+  }
 }

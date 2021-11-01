@@ -1,6 +1,6 @@
 using System;
 
-namespace fridgeraider.Models
+namespace FridgeRaider.Models
 {
     public class ErrorViewModel
     {

@@ -1,4 +1,4 @@
-namespace MvcApiCall.Models
+namespace FridgeRaider.Models
 {
   public static class EnvironmentVariables
   {
