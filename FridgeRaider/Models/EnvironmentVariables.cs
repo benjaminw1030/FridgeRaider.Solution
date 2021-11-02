@@ -2,6 +2,6 @@ namespace FridgeRaider.Models
 {
   public static class EnvironmentVariables
   {
-    public static string ApiKey = "1";
+    public static string ApiKey = "9973533";
   }
 }
