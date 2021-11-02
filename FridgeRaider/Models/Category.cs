@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FridgeRaider.Models
 {
+  [NotMapped]
   public class Category
   {
     public string IdCategory { get; set; }
