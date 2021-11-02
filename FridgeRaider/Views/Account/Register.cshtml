@@ -1,0 +1,37 @@
+@{
+  Layout = "_Layout";
+  ViewData["Title"] = "Register";
+}
+
+@using FridgeRaider.ViewModels
+@model RegisterViewModel
+
+<h1 class="display-4">User Registration</h1>
+<hr>
+@if (User.Identity.IsAuthenticated)
+{
+  <p>You are already logged in. Please logout first to create a new user.</p>
+  @using (Html.BeginForm("LogOff", "Account"))
+  {
+    <input type="submit" class="btn btn-dark" value="Log out" />
+  }
+}
+else
+{
+  @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+  {
+    @Html.LabelFor(user => user.UserName)
+    @Html.TextBoxFor(user => user.UserName)
+
+    @Html.LabelFor(user => user.Email)
+    @Html.TextBoxFor(user => user.Email)
+
+    @Html.LabelFor(user => user.Password)
+    @Html.PasswordFor(user => user.Password)
+
+    @Html.LabelFor(user => user.ConfirmPassword)
+    @Html.PasswordFor(user => user.ConfirmPassword)
+
+    <input type="submit" value="Register" />
+  }
+}

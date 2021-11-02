@@ -15,8 +15,8 @@ namespace FridgeRaider.Controllers
     {
       //viewbag.meals = user.meals (latest 3)
       //viewbag.fridge = user.fridge (latest 3)
-      var randomMeals = Meal.GetRandomMeals(EnvironmentVariables.ApiKey);
-      return View(randomMeals);
+      // var randomMeals = Meal.GetRandomMeals(EnvironmentVariables.ApiKey);
+      return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
