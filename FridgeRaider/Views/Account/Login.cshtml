@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+  ViewData["Title"] = "Register";
+}
+
+@using FridgeRaider.ViewModels
+@model RegisterViewModel
+
+@if (User.Identity.IsAuthenticated)
+{
+  <p>You're already logged in.</p>
+}
+else
+{
+  <h2>Login:</h2>
+  @using (Html.BeginForm())
+  {
+    @Html.LabelFor(m => m.UserName)
+    @Html.TextBoxFor(m => m.UserName)
+
+    @Html.LabelFor(m => m.Password)
+    @Html.TextBoxFor(m => m.Password)
+
+    <input type="submit" value="Log in" class="btn btn-dark">
+  }
+}
+
+<p>Don't have an account? @Html.ActionLink("Register here", "Register", "Account").</p>

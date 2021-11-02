@@ -6,3 +6,23 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@if(User.Identity.IsAuthenticated)
+{
+    <p>Hey @User.Identity.Name</p>
+    @*Add in links to user's page where they have saved fridge items and favorite recipes*@
+}
+else
+{
+    <p>@Html.ActionLink("Login or register", "Index", "Account") to start adding food and saving favorite meals!</p>
+}
+
+<p>A selction of available meals to enjoy:</p>
+@foreach (Meal meal in Model)
+{
+    <div class="meal">
+        @* wrap image with link to meal *@
+        <img src="@meal.StrMealThumb/preview" alt="">
+        <p>@meal.StrMeal</p>
+    </div>
+}

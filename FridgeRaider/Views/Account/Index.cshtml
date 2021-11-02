@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+  ViewData["Title"] = "Account Management";
+}
+
+<div class="text-center">
+  <h1 class="display-4">Account Management</h1>
+  @if(User.Identity.IsAuthenticated)
+  {
+    <p>Hello @User.Identity.Name!</p>
+  }
+  else
+  {
+    <p>You are not logged in. Please @Html.ActionLink("click here", "Register") to create an account or login above.</p>
+  }
+</div>

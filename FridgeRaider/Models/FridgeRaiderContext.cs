@@ -7,6 +7,7 @@ namespace FridgeRaider.Models
   {
     public DbSet<UserIngredient> UserIngredients { get; set; }
     public DbSet<UserMeal> UserMeals { get; set; }
+    public DbSet<Ingredient> Ingredients { get; set; }
     public FridgeRaiderContext(DbContextOptions options) : base(options) { }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
