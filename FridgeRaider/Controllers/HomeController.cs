@@ -11,6 +11,7 @@ namespace FridgeRaider.Controllers
 {
   public class HomeController : Controller
   {
+    [HttpGet("/")]
     public IActionResult Index()
     {
       //viewbag.meals = user.meals (latest 3)
