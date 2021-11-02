@@ -44,7 +44,7 @@ namespace FridgeRaider.Controllers
       }
     }
 
-    public ActionResult Login()
+    public IActionResult Login()
     {
       return View();
     }

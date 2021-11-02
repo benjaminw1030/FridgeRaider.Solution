@@ -94,13 +94,13 @@ namespace FridgeRaider.Models
       return mealList;
     }
 
-    // public static List<Meal> GetRandomMeals(string apiKey)
-    // {
-    //   var apiCallTask = ApiHelper.GetRandomMeals(apiKey);
-    //   var result = apiCallTask.Result;
-    //   JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-    //   List<Meal> mealList = JsonConvert.DeserializeObject<List<Meal>>(jsonResponse["meals"].ToString());
-    //   return mealList;
-    // }
+    public static List<Meal> GetRandomMeals(string apiKey)
+    {
+      var apiCallTask = ApiHelper.GetRandomMeals(apiKey);
+      var result = apiCallTask.Result;
+      JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+      List<Meal> mealList = JsonConvert.DeserializeObject<List<Meal>>(jsonResponse["meals"].ToString());
+      return mealList;
+    }
   }
 }
