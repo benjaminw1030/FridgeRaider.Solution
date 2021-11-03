@@ -1,0 +1,104 @@
+@{
+  ViewData["Title"] = @Model[0].StrMeal;
+}
+
+<div class="text-center">
+  <h1 class="display-4">@Model[0].StrMeal</h1>
+</div>
+
+<img src="@Model[0].StrMealThumb" alt="">
+<h2>@Model[0].StrCategory</h2>
+<h2>@Model[0].StrArea Cuisine</h2>
+<p><a href=@Model[0].StrYoutube>Check out the video</a></p>
+<p>Ingredients</p>
+<ul>
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient1))
+  {
+    <li>@Model[0].StrIngredient1 - @Model[0].StrMeasure1</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient2))
+  {
+    <li>@Model[0].StrIngredient2 - @Model[0].StrMeasure2</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient3))
+  {
+    <li>@Model[0].StrIngredient3 - @Model[0].StrMeasure3</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient4))
+  {
+    <li>@Model[0].StrIngredient4 - @Model[0].StrMeasure4</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient5))
+  {
+    <li>@Model[0].StrIngredient5 - @Model[0].StrMeasure5</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient6))
+  {
+    <li>@Model[0].StrIngredient6 - @Model[0].StrMeasure6</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient7))
+  {
+    <li>@Model[0].StrIngredient7 - @Model[0].StrMeasure7</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient8))
+  {
+    <li>@Model[0].StrIngredient8 - @Model[0].StrMeasure8</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient9))
+  {
+    <li>@Model[0].StrIngredient9 - @Model[0].StrMeasure9</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient10))
+  {
+    <li>@Model[0].StrIngredient10 - @Model[0].StrMeasure10</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient11))
+  {
+    <li>@Model[0].StrIngredient11 - @Model[0].StrMeasure11</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient12))
+  {
+    <li>@Model[0].StrIngredient12 - @Model[0].StrMeasure12</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient13))
+  {
+    <li>@Model[0].StrIngredient13 - @Model[0].StrMeasure13</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient14))
+  {
+    <li>@Model[0].StrIngredient14 - @Model[0].StrMeasure14</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient15))
+  {
+    <li>@Model[0].StrIngredient15 - @Model[0].StrMeasure15</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient16))
+  {
+    <li>@Model[0].StrIngredient16 - @Model[0].StrMeasure16</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient17))
+  {
+    <li>@Model[0].StrIngredient17 - @Model[0].StrMeasure17</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient18))
+  {
+    <li>@Model[0].StrIngredient18 - @Model[0].StrMeasure18</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient19))
+  {
+    <li>@Model[0].StrIngredient19 - @Model[0].StrMeasure19</li>
+  }
+  @if (!String.IsNullOrEmpty(Model[0].StrIngredient20))
+  {
+    <li>@Model[0].StrIngredient20 - @Model[0].StrMeasure20</li>
+  }
+</ul>
+<p>Directions</p>
+<p>@Model[0].StrInstructions</p>
+<p><a href=@Model[0].StrSource>Source</a></p>
+@using (Html.BeginForm("AddMeal", "Meals"))
+{
+  <input data-val="true" data-val-required="The idMeal field is required." id="idMeal" name="idMeal" type="hidden"
+  value="@Model[0].IdMeal">
+  <input type="submit" value="Save Meal to Recipe Book" class="btn btn-dark">
+}

@@ -83,42 +83,44 @@ namespace FridgeRaider.Migrations
 
             modelBuilder.Entity("FridgeRaider.Models.UserIngredient", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("UserIngredientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("IdIngredient")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("UserIngredientId")
-                        .HasColumnType("int");
+                    b.HasKey("UserIngredientId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("UserIngredients");
                 });
 
             modelBuilder.Entity("FridgeRaider.Models.UserMeal", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("UserMealId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("IdMeal")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("UserMealId")
-                        .HasColumnType("int");
+                    b.HasKey("UserMealId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("UserMeals");
                 });
@@ -253,20 +255,20 @@ namespace FridgeRaider.Migrations
 
             modelBuilder.Entity("FridgeRaider.Models.UserIngredient", b =>
                 {
-                    b.HasOne("FridgeRaider.Models.ApplicationUser", "User")
+                    b.HasOne("FridgeRaider.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("UserIngredients")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("ApplicationUserId");
 
-                    b.Navigation("User");
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("FridgeRaider.Models.UserMeal", b =>
                 {
-                    b.HasOne("FridgeRaider.Models.ApplicationUser", "User")
+                    b.HasOne("FridgeRaider.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("UserMeals")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("ApplicationUserId");
 
-                    b.Navigation("User");
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

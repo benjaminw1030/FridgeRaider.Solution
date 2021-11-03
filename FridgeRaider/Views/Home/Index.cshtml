@@ -21,8 +21,9 @@ else
 @foreach (Meal meal in Model)
 {
     <div class="meal">
-        @* wrap image with link to meal *@
+        <a href="~/Meals/Details/@meal.IdMeal">
         <img src="@meal.StrMealThumb/preview" alt="">
         <p>@meal.StrMeal</p>
+        </a>
     </div>
 }
