@@ -7,9 +7,11 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+<p>@Html.ActionLink("List of Ingredients", "Index", "Ingredients")</p>
+
 @if(User.Identity.IsAuthenticated)
 {
-    <p>Hey @User.Identity.Name</p>
+    <p>Hey @User.Identity.Name!</p>
     @*Add in links to user's page where they have saved fridge items and favorite recipes*@
 }
 else
@@ -17,7 +19,7 @@ else
     <p>@Html.ActionLink("Login or register", "Index", "Account") to start adding food and saving favorite meals!</p>
 }
 
-<p>A selction of available meals to enjoy:</p>
+<p>A selection of available meals to enjoy:</p>
 @foreach (Meal meal in Model)
 {
     <div class="meal">
