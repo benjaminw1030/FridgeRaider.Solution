@@ -99,6 +99,21 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+  @if (ViewBag.RequiredIngredients.Count > 0)
+  {
+    <p>You need the following items in your fridge to make this meal:</p>
+    <ul>
+      @foreach (string ingredient in ViewBag.RequiredIngredients)
+      {
+        <li>@ingredient</li>
+      }
+    </ul>
+    <p>@Html.ActionLink("Add Items to Fridge", "Index", "Ingredients")</p>
+  }
+  else
+  {
+    <p>You have everything you need to make this meal!</p>
+  }
   @if (ViewBag.Saved)
   {
     <p>Recipe Saved!</p>
