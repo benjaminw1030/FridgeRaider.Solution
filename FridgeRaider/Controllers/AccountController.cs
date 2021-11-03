@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using FridgeRaider.Models;
 using System.Threading.Tasks;
 using FridgeRaider.ViewModels;
+using System.Security.Claims;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace FridgeRaider.Controllers
 {
@@ -27,6 +30,19 @@ namespace FridgeRaider.Controllers
     public IActionResult Register()
     {
       return View();
+    }
+
+    public async Task<ActionResult> RecipeBook()
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId); 
+      var userMeals = _db.UserMeals.ToList().Where(join => join.UserId == currentUser.Id);
+      List<Meal> recipeBook = new List<Meal> {};
+      foreach(UserMeal join in userMeals)
+      {
+        recipeBook.Add(Meal.GetMeal(EnvironmentVariables.ApiKey, join.IdMeal)[0]);
+      }
+      return View(recipeBook);
     }
 
     [HttpPost]

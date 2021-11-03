@@ -96,9 +96,25 @@
 <p>Directions</p>
 <p>@Model[0].StrInstructions</p>
 <p><a href=@Model[0].StrSource>Source</a></p>
-@using (Html.BeginForm("AddMeal", "Meals"))
+
+@if (User.Identity.IsAuthenticated)
 {
-  <input data-val="true" data-val-required="The idMeal field is required." id="idMeal" name="idMeal" type="hidden"
-  value="@Model[0].IdMeal">
-  <input type="submit" value="Save Meal to Recipe Book" class="btn btn-dark">
+  @if (ViewBag.Saved)
+  {
+    <p>Recipe Saved!</p>
+    @using (Html.BeginForm("DeleteMeal", "Meals"))
+      {
+        <input data-val="true" data-val-required="The joinId field is required." id="joinId" name="joinId" type="hidden" value="@ViewBag.JoinId">
+        <input type="submit" value="Remove from recipe book" class="btn btn-dark">
+      }
+    
+  }
+  else
+  {
+    @using (Html.BeginForm("AddMeal", "Meals"))
+    {
+      <input data-val="true" data-val-required="The idMeal field is required." id="idMeal" name="idMeal" type="hidden" value="@Model[0].IdMeal">
+      <input type="submit" value="Save Meal to Recipe Book" class="btn btn-dark">
+    }
+  }
 }

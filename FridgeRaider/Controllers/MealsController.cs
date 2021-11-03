@@ -9,6 +9,7 @@ using FridgeRaider.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using System;
 
 namespace FridgeRaider.Controllers
 {
@@ -16,7 +17,7 @@ namespace FridgeRaider.Controllers
   {
     private readonly FridgeRaiderContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
-    
+
     public MealsController(UserManager<ApplicationUser> userManager, FridgeRaiderContext db)
     {
       _userManager = userManager;
@@ -39,6 +40,13 @@ namespace FridgeRaider.Controllers
 
     public IActionResult Details(string id)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      IEnumerable<UserMeal> userMeals = _db.UserMeals.ToList().Where(join => join.UserId == userId);
+      ViewBag.Saved = userMeals.Any(m => m.IdMeal == id);
+      if (ViewBag.Saved)
+      {
+        ViewBag.JoinId = userMeals.FirstOrDefault(entry => entry.IdMeal == id).UserMealId;
+      }
       var mealDetails = Meal.GetMeal(EnvironmentVariables.ApiKey, id);
       return View(mealDetails);
     }
@@ -54,6 +62,14 @@ namespace FridgeRaider.Controllers
       }
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = idMeal });
+    }
+    [HttpPost]
+    public ActionResult DeleteMeal(int joinId)
+    {
+      var JoinEntry = _db.UserMeals.FirstOrDefault(entry => entry.UserMealId == joinId);
+      _db.UserMeals.Remove(JoinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = JoinEntry.IdMeal });
     }
   }
 }

@@ -1,11 +1,12 @@
 @{
-  ViewData["Title"] = "whatever";
+  ViewData["Title"] = "Recipe Book";
 }
 
 <div class="text-center">
-  <h1 class="display-4"></h1>
+  <h1 class="display-4">Recipes</h1>
 </div>
-<p>These are the meals in this category:</p>
+
+<p>Saved Recipes:</p>
 @foreach (Meal meal in Model)
 {
   <div class="meal">
