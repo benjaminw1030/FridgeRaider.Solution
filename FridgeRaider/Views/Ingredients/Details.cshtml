@@ -1,0 +1,6 @@
+@foreach (Ingredient ingredient in Model)
+{
+    <div class="ingredient">
+        <li>@Html.ActionLink($"{ingredient.StrIngredient}", "Details", new { id = ingredient.IdIngredient })</li>
+    </div>
+}

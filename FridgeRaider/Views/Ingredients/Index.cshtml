@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Ingredients";
+}
+
+<p>Click below to search for ingredients:</p>
+<ul>
+
+@foreach(char letter in ViewBag.FirstLetters)
+{
+  @Html.ActionLink($"{letter} ", "Details", new { letter = letter})
+}
+
+@* @foreach (Ingredient ingredient in Model)
+{
+    <div class="ingredient">
+        wrap image with link to ingredient
+        <li>@Html.ActionLink($"{ingredient.StrIngredient}", "Details", new { id = ingredient.IdIngredient })</li>
+    </div>
+} *@
+
+</ul>
