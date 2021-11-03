@@ -47,7 +47,7 @@ namespace FridgeRaider.Models
 
     public static async Task<string> GetIngredients(string apiKey)
     {
-      RestClient client = new RestClient("www.themealdb.com/api");
+      RestClient client = new RestClient("http://www.themealdb.com/api");
       RestRequest request = new RestRequest($"json/v2/{apiKey}/list.php?i=list", Method.GET);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
