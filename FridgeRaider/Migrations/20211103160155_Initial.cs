@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FridgeRaider.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -157,17 +157,18 @@ namespace FridgeRaider.Migrations
                 name: "UserIngredients",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
-                    UserIngredientId = table.Column<int>(type: "int", nullable: false),
+                    UserIngredientId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdIngredient = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
-                    UserId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
+                    UserId = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ApplicationUserId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserIngredients", x => x.Id);
+                    table.PrimaryKey("PK_UserIngredients", x => x.UserIngredientId);
                     table.ForeignKey(
-                        name: "FK_UserIngredients_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_UserIngredients_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -177,17 +178,18 @@ namespace FridgeRaider.Migrations
                 name: "UserMeals",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
-                    UserMealId = table.Column<int>(type: "int", nullable: false),
+                    UserMealId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdMeal = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
-                    UserId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
+                    UserId = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ApplicationUserId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserMeals", x => x.Id);
+                    table.PrimaryKey("PK_UserMeals", x => x.UserMealId);
                     table.ForeignKey(
-                        name: "FK_UserMeals_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_UserMeals_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -231,14 +233,14 @@ namespace FridgeRaider.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserIngredients_UserId",
+                name: "IX_UserIngredients_ApplicationUserId",
                 table: "UserIngredients",
-                column: "UserId");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserMeals_UserId",
+                name: "IX_UserMeals_ApplicationUserId",
                 table: "UserMeals",
-                column: "UserId");
+                column: "ApplicationUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

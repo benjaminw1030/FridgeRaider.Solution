@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Meal Categories";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Meal Categories</h1>
+</div>
+
+<p>These are the categories of meals available to make:</p>
+@foreach (Category category in Model)
+{
+    <div class="category">
+        <p>@Html.ActionLink(@category.StrCategory, "Category", "Meals", new { id = @category.StrCategory })</p>
+    </div>
+}

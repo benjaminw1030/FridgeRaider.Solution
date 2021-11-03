@@ -1,0 +1,18 @@
+@{
+  ViewData["Title"] = "whatever";
+}
+
+<div class="text-center">
+  <h1 class="display-4"></h1>
+</div>
+
+<p>These are the meals in this category:</p>
+@foreach (Meal meal in Model)
+{
+  <div class="meal">
+    <a href="~/Meals/Details/@meal.IdMeal">
+      <img src="@meal.StrMealThumb/preview" alt="">
+      <p>@meal.StrMeal</p>
+    </a>
+  </div>
+}

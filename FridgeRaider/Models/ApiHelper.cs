@@ -7,7 +7,7 @@ namespace FridgeRaider.Models
   {
     public static async Task<string> GetCategories(string apiKey)
     {
-      RestClient client = new RestClient("www.themealdb.com/api");
+      RestClient client = new RestClient("http://www.themealdb.com/api");
       RestRequest request = new RestRequest($"json/v2/{apiKey}/categories.php", Method.GET);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
@@ -15,7 +15,7 @@ namespace FridgeRaider.Models
 
     public static async Task<string> GetMealsInCategory(string apiKey, string category)
     {
-      RestClient client = new RestClient("www.themealdb.com/api");
+      RestClient client = new RestClient("http://www.themealdb.com/api");
       RestRequest request = new RestRequest($"json/v2/{apiKey}/filter.php?c={category}", Method.GET);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
@@ -23,7 +23,7 @@ namespace FridgeRaider.Models
 
     public static async Task<string> GetMeal(string apiKey, string idMeal)
     {
-      RestClient client = new RestClient("www.themealdb.com/api");
+      RestClient client = new RestClient("http://www.themealdb.com/api");
       RestRequest request = new RestRequest($"json/v2/{apiKey}/lookup.php?i={idMeal}", Method.GET);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
@@ -31,7 +31,7 @@ namespace FridgeRaider.Models
 
     public static async Task<string> GetMealByName(string apiKey, string search)
     {
-      RestClient client = new RestClient("www.themealdb.com/api");
+      RestClient client = new RestClient("http://www.themealdb.com/api");
       RestRequest request = new RestRequest($"json/v2/{apiKey}/search.php?s={search}", Method.GET);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
@@ -39,7 +39,7 @@ namespace FridgeRaider.Models
 
     public static async Task<string> GetMealsByFirstLetter(string apiKey, string letter)
     {
-      RestClient client = new RestClient("www.themealdb.com/api");
+      RestClient client = new RestClient("http://www.themealdb.com/api");
       RestRequest request = new RestRequest($"json/v2/{apiKey}/search.php?f={letter}", Method.GET);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
