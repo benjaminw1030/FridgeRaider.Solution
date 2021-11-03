@@ -13,8 +13,18 @@ namespace FridgeRaider.Controllers
   {
     public ActionResult Index()
     {
-      var allIngredients = Ingredient.GetIngredients(EnvironmentVariables.ApiKey);
-      return View(allIngredients);
+      var allIngredients = Ingredient.GetIngredients(EnvironmentVariables.ApiKey).ToList();
+      var sortedIngredients = allIngredients.OrderBy(x => x.StrIngredient).ToList();
+      ViewBag.FirstLetters = sortedIngredients.Select(s => s.StrIngredient[0]).Distinct().ToList();
+      return View(sortedIngredients);
+    }
+
+    public ActionResult Details(string letter)
+    {
+      var ingredients = Ingredient.GetIngredients(EnvironmentVariables.ApiKey)
+        .ToList()
+        .Where(x => x.StrIngredient[0].ToString() == letter);
+      return View(ingredients);
     }
   }
 }
