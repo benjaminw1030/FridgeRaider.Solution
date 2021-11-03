@@ -44,6 +44,10 @@
                                 asp-action="RecipeBook">Recipe Book</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account"
+                                asp-action="Fridge">Fridge</a>
+                            </li>
+                            <li class="nav-item">
                                 @using (Html.BeginForm("LogOff", "Account"))
                                 {
                                     <input type="submit" class="btn btn-dark" value="Log out" />

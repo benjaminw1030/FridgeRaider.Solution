@@ -1,0 +1,15 @@
+@{
+  ViewData["Title"] = "Fridge";
+}
+
+<div class="text-center">
+  <h1 class="display-4">Ingredients</h1>
+</div>
+
+<p>Ingredients in your fridge:</p>
+@foreach (var join in Model)
+{
+  <div class="fridge">
+  <p>@join.StrIngredient</p>
+  </div>
+}
