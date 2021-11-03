@@ -45,6 +45,20 @@ namespace FridgeRaider.Controllers
       return View(recipeBook);
     }
 
+    public async Task<ActionResult> Fridge()
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId); 
+      var userIngredients = _db.UserIngredients.ToList().Where(join => join.UserId == currentUser.Id);
+      List<Ingredient> fridge = new List<Ingredient> {};
+      foreach (UserIngredient join in userIngredients)
+      {
+        fridge.Add(Ingredient.GetIngredients(EnvironmentVariables.ApiKey)
+          .FirstOrDefault(x => x.IdIngredient == join.IdIngredient));
+      }
+      return View(fridge);
+    }
+
     [HttpPost]
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
