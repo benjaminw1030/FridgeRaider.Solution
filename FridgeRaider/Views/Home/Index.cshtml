@@ -7,8 +7,6 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<p>@Html.ActionLink("List of Ingredients", "Index", "Ingredients")</p>
-
 @if(User.Identity.IsAuthenticated)
 {
     <p>Hey @User.Identity.Name!</p>

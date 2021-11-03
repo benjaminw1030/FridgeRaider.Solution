@@ -2,22 +2,32 @@
     ViewData["Title"] = "Ingredients";
 }
 
-<p>Click below to search for ingredients:</p>
-<ul class="columns" data-columns="2">
 
+<p>Click below to search for ingredients:</p>
+
+<ul>
 @foreach(char letter in ViewBag.FirstLetters)
 {
   @Html.ActionLink($"{letter} ", "Index", new { letter = letter})
 }
-
 </ul>
+
 
 <hr>
 
+<style>
+.threeIngredients {
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+}
+</style>
 
+<ul class="threeIngredients">
 @foreach (Ingredient ingredient in Model)
 {
     <div class="ingredient">
-        <li>@ingredient.StrIngredient</li>
+        <li>@Html.ActionLink($"{ingredient.StrIngredient}", "Details", new { id = ingredient.IdIngredient })</li>
     </div>
 }
+</ul>

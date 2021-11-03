@@ -1,0 +1,16 @@
+@{
+  ViewData["Title"] = "Ingredients";
+}
+
+@model List<FridgeRaider.Models.Ingredient>;
+
+<div class="text-center">
+  <h1 class="display-4">@Model[0].StrIngredient</h1>
+</div>
+
+
+@using (Html.BeginForm("AddIngredient", "Ingredients"))
+{
+  @Html.Hidden("idIngredient", @Model[0].IdIngredient)
+  <input type="submit" value="Add Ingredient to Fridge" class="btn btn-dark">
+}
