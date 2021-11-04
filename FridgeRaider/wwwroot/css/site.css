@@ -75,7 +75,6 @@ body {
 .btn-text {
   color: black;
   transition: none;
-
 }
 
 .form-inline
@@ -101,4 +100,12 @@ footer {
   float: right;
   margin-left: 10px;
   margin-bottom:10px;
+}
+
+footer a {
+  color: #212529;
+}
+
+input {
+  margin-left: 5px;
 }
