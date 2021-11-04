@@ -1,15 +1,23 @@
 @{
-    ViewData["Title"] = "Ingredients";
+  ViewData["Title"] = "Ingredients";
 }
+
 
 <div class="text-center">
 <p>Click below to search for ingredients:</p>
 
-<ul>
-@foreach(char letter in ViewBag.FirstLetters)
+@using (Html.BeginForm("Search", "Ingredients"))
 {
-  @Html.ActionLink($"{letter} ", "Index", new { letter = letter})
+  @Html.TextBox("searchString")
+  <input type="submit" class="btn btn-dark" value="Search for an Ingredient">
 }
+
+<p>View ingredients by first letter:</p>
+<ul>
+  @foreach (char letter in ViewBag.FirstLetters)
+  {
+    @Html.ActionLink($"{letter} ", "Index", new { letter = letter})
+  }
 </ul>
 </div>
 
@@ -17,18 +25,33 @@
 <hr>
 
 <style>
-.threeIngredients {
-  columns: 3;
-  -webkit-columns: 3;
-  -moz-columns: 3;
-}
+  .threeIngredients {
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+  }
 </style>
 
 <ul class="threeIngredients">
-@foreach (Ingredient ingredient in Model)
-{
+  @foreach (Ingredient ingredient in Model)
+  {
     <div class="ingredient">
-        <li>@Html.ActionLink($"{ingredient.StrIngredient}", "Details", new { id = ingredient.IdIngredient })</li>
+      <li>
+        @if (!ViewBag.Fridge.Contains(ingredient.StrIngredient))
+        {
+          @using (Html.BeginForm("AddIngredient", "Ingredients"))
+          {
+            <input data-val="true" data-val-required="The idIngredient field is required." id="idIngredient"
+          name="idIngredient" type="hidden" value="@ingredient.IdIngredient">
+            <input type="submit" value="@ingredient.StrIngredient" class="btn btn-link">
+          }
+        }
+        else
+        {
+          <button class="btn btn-text">@ingredient.StrIngredient</button>
+          //delete form goes here
+        }
+      </li>
     </div>
-}
+  }
 </ul>

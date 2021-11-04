@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "Meals Search";
+}
+
+@using (Html.BeginForm("Search", "Meals"))
+{
+    @Html.TextBox("searchString")
+    <input type="submit" class="btn btn-dark" value="Search for a Meal">
+}
+
+<div class="text-center">
+    <h1 class="display-4">Meal Search</h1>
+</div>
+<p>Search Results:</p>
+@if (Model == null)
+{
+    <p>No results found.</p>
+}
+else
+{
+    @foreach (Meal meal in Model)
+    {
+        <div class="meal">
+            <a href="~/Meals/Details/@meal.IdMeal">
+                <img src="@meal.StrMealThumb/preview" alt="">
+                <p>@meal.StrMeal</p>
+            </a>
+        </div>
+    }
+}

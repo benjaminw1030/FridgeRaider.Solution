@@ -7,22 +7,27 @@
 </div>
 
 <style>
-.categoryDisplay {
-  columns: 3;
-  -webkit-columns: 3;
-  -moz-columns: 3;
-}
+    .categoryDisplay {
+        columns: 3;
+        -webkit-columns: 3;
+        -moz-columns: 3;
+    }
 </style>
 <hr>
-
 <ul class="categoryDisplay">
-@foreach (Category category in Model)
-{
-    <div class="category">
-        <a href="~/Meals/Category/@category.StrCategory">
-        <img src="@category.StrCategoryThumb" alt="">
-        <p>@category.StrCategory</p>
-        </a>
-    </div>
-}
+    @using (Html.BeginForm("Search", "Meals"))
+    {
+        @Html.TextBox("searchString")
+        <input type="submit" class="btn btn-dark" value="Search for a Meal">
+    }
+    <p>These are the categories of meals available to make:</p>
+    @foreach (Category category in Model)
+    {
+        <div class="category">
+            <a href="~/Meals/Category/@category.StrCategory">
+                <img src="@category.StrCategoryThumb" alt="">
+                <p>@category.StrCategory</p>
+            </a>
+        </div>
+    }
 </ul>
