@@ -2,16 +2,35 @@
     ViewData["Title"] = "Meals Search";
 }
 
+
+<div class="text-center">
+    <h1 class="display-4">Meal Search</h1>
 @using (Html.BeginForm("Search", "Meals"))
 {
     @Html.TextBox("searchString")
     <input type="submit" class="btn btn-dark" value="Search for a Meal">
 }
-
-<div class="text-center">
-    <h1 class="display-4">Meal Search</h1>
 </div>
-<p>Search Results:</p>
+<hr>
+
+<style>
+.searchDisplay {
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+    text-align: center;
+}
+
+img {
+    width: 150px;
+}
+
+.meal {
+    height: 230px;
+}
+</style>
+
+<ul class="searchDisplay">
 @if (Model == null)
 {
     <p>No results found.</p>
@@ -23,8 +42,10 @@ else
         <div class="meal">
             <a href="~/Meals/Details/@meal.IdMeal">
                 <img src="@meal.StrMealThumb/preview" alt="">
-                <p>@meal.StrMeal</p>
+                <br>
+                @meal.StrMeal
             </a>
         </div>
     }
 }
+</ul>

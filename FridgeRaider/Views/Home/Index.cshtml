@@ -3,12 +3,12 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Fridge Raider</h1>
 
 
 @if(User.Identity.IsAuthenticated)
 {
-    <p>Hey @User.Identity.Name!</p>
+    <p>Welcome @User.Identity.Name!</p>
     @*Add in links to user's page where they have saved fridge items and favorite recipes*@
 }
 else

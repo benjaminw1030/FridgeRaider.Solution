@@ -36,12 +36,6 @@ namespace FridgeRaider.Controllers
       return View(ingredients);
     }
 
-    public IActionResult Details(string id)
-    {
-      var ingredientDetails = Ingredient.GetIngredients(EnvironmentVariables.ApiKey).ToList()
-      .Where(x => x.IdIngredient == id).ToList();
-      return View(ingredientDetails);
-    }
     [Authorize]
     [HttpPost]
     public async Task<ActionResult> AddIngredient(ApplicationUser user, string idIngredient)

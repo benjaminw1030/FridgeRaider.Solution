@@ -13,9 +13,9 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 justify-content-between">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">fridgeraider</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Fridge Raider</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,6 +37,8 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Ingredients"
                                 asp-action="Index">Ingredients</a>
                         </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -72,9 +74,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - fridgeraider - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer">
+        <div class="container text-center">
+            &copy; 2021 - Fridge Raider - <a href="https://github.com/art-weinstein">Art Weinstein</a> | <a href="https://github.com/benjaminw1030">Ben Wilson</a> | <a href="https://github.com/ericamarroquin">Erica Marroquin</a> | <a href="https://github.com/Singleballtheory">Scott Hutley</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

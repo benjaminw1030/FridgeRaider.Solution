@@ -68,6 +68,14 @@ namespace FridgeRaider.Models
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
     }
+
+    public static async Task<string> GetFilterMeals(string apiKey, string searchString)
+    {
+      RestClient client = new RestClient("http://www.themealdb.com/api");
+      RestRequest request = new RestRequest($"json/v2/{apiKey}/filter.php?i={searchString}", Method.GET);
+      var response = await client.ExecuteTaskAsync(request);
+      return response.Content;
+    }
   }
 }
 

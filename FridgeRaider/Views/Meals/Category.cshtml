@@ -3,35 +3,41 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Meals in Category</h1>
+  <h1 class="display-4">Meals in Category</h1>
+  @using (Html.BeginForm("Search", "Meals"))
+  {
+    @Html.TextBox("searchString")
+    <input type="submit" class="btn btn-dark" value="Search for a Meal">
+  }
 </div>
 <hr>
 
 <style>
-.display {
-    -moz-column-count: 5;
-    -webkit-column-count: 5;
-    column-count: 5;
-}
+  .display {
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+    text-align: center;
+  }
 
-img {
+  img {
     width: 150px;
-}
+  }
 
-.meal {
+  .meal {
     height: 230px;
-}
+  }
 </style>
 
 <ul class="display">
-@foreach (Meal meal in Model)
-{
-  <div class="meal">
-    <a href="~/Meals/Details/@meal.IdMeal">
-      <img src="@meal.StrMealThumb/preview" alt="">
-      <br>
-      @meal.StrMeal
-    </a>
-  </div>
-}
+  @foreach (Meal meal in Model)
+  {
+    <div class="meal">
+      <a href="~/Meals/Details/@meal.IdMeal">
+        <img src="@meal.StrMealThumb/preview" alt="">
+        <br>
+        @meal.StrMeal
+      </a>
+    </div>
+  }
 </ul>

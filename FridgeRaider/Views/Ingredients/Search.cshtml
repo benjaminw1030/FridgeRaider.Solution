@@ -18,14 +18,12 @@
   }
 </style>
 
-<p>@Model</p>
-
-@if (Model.ToList().Count = 0)
+@* @if (Model == )
 {
   <p>No results found.</p>
 }
 else
-{
+{ *@
   <ul class="threeIngredients">
     @foreach (Ingredient ingredient in Model)
     {
@@ -49,4 +47,4 @@ else
       </div>
     }
   </ul>
-}
+@* } *@

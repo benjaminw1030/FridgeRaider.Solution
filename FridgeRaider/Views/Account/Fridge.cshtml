@@ -2,24 +2,33 @@
   ViewData["Title"] = "Fridge";
 }
 
-<div class="text-center">
-  <h1 class="display-4">Fridge Ingredients</h1>
-</div>
-<hr>
-
-<style>
-.fridgeIngredients {
-  columns: 3;
-  -webkit-columns: 3;
-  -moz-columns: 3;
-}
-</style>
-
-<ul class="fridgeIngredients">
-@foreach (var join in Model)
-{
-  <div class="fridge">
-  <li>@join.StrIngredient</li>
+<div class="FridgeBackground">
+  <div class="text-center">
+    <h1 class="display-4">Fridge Ingredients</h1>
+    <h4>Click on an ingredient to remove it from your fridge.</h4>
   </div>
-}
-</ul>
+  <hr>
+  
+  <style>
+    .fridgeIngredients {
+      columns: 3;
+      -webkit-columns: 3;
+      -moz-columns: 3;
+    }
+  </style>
+  
+  <ul class="fridgeIngredients">
+    @foreach (Ingredient ingredient in Model)
+    {
+      <div class="fridge">
+        <li>
+        <form action="/Account/DeleteIngredient" class="form-inline" method="post">
+          <input data-val="true" data-val-required="The idIngredient field is required." id="id" name="id" type="hidden"
+          value="@ingredient.IdIngredient">
+          <input type="submit" value="@ingredient.StrIngredient" class="btn btn-link">
+        </form>
+        </li>
+      </div>
+      }
+  </ul>
+</div>

@@ -111,5 +111,14 @@ namespace FridgeRaider.Models
       List<Meal> mealList = JsonConvert.DeserializeObject<List<Meal>>(jsonResponse["meals"].ToString());
       return mealList;
     }
+
+    public static List<Meal> GetFilteredMeals(string apiKey, string searchString)
+    {
+      var apiCallTask = ApiHelper.GetFilterMeals(apiKey, searchString);
+      var result = apiCallTask.Result;
+      JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+      List<Meal> mealList = JsonConvert.DeserializeObject<List<Meal>>(jsonResponse["meals"].ToString());
+      return mealList;
+    }
   }
 }

@@ -60,6 +60,17 @@ namespace FridgeRaider.Controllers
     }
 
     [HttpPost]
+    public async Task<ActionResult> DeleteIngredient(ApplicationUser user, string id)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var chosenIngredient = _db.UserIngredients.FirstOrDefault(ingredient => ingredient.IdIngredient == id);
+      _db.UserIngredients.Remove(chosenIngredient);
+      _db.SaveChanges();
+      return RedirectToAction("Fridge");
+    }
+
+    [HttpPost]
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
       var user = new ApplicationUser { UserName = model.UserName };

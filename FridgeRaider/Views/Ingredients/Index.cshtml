@@ -4,21 +4,21 @@
 
 
 <div class="text-center">
-<p>Click below to search for ingredients:</p>
+  <p>Click below to search for ingredients:</p>
 
-@using (Html.BeginForm("Search", "Ingredients"))
-{
-  @Html.TextBox("searchString")
-  <input type="submit" class="btn btn-dark" value="Search for an Ingredient">
-}
-
-<p>View ingredients by first letter:</p>
-<ul>
-  @foreach (char letter in ViewBag.FirstLetters)
+  @using (Html.BeginForm("Search", "Ingredients"))
   {
-    @Html.ActionLink($"{letter} ", "Index", new { letter = letter})
+    @Html.TextBox("searchString")
+    <input type="submit" class="btn btn-dark btn-sm" value="Search for an Ingredient">
   }
-</ul>
+
+  <p>View ingredients by first letter:</p>
+  <ul>
+    @foreach (char letter in ViewBag.FirstLetters)
+    {
+      @Html.ActionLink($"{letter} ", "Index", new { letter = letter})
+    }
+  </ul>
 </div>
 
 
@@ -42,14 +42,18 @@
           @using (Html.BeginForm("AddIngredient", "Ingredients"))
           {
             <input data-val="true" data-val-required="The idIngredient field is required." id="idIngredient"
-          name="idIngredient" type="hidden" value="@ingredient.IdIngredient">
+        name="idIngredient" type="hidden" value="@ingredient.IdIngredient">
             <input type="submit" value="@ingredient.StrIngredient" class="btn btn-link">
           }
         }
         else
         {
-          <button class="btn btn-text">@ingredient.StrIngredient</button>
-          //delete form goes here
+          <button class="btn btn-text">@ingredient.StrIngredient - in fridge</button>
+          <form action="/Ingredients/DeleteIngredient" class="form-inline" method="post">
+            <input data-val="true" data-val-required="The idIngredient field is required." id="id" name="id" type="hidden"
+          value="@ingredient.IdIngredient">
+            <input type="submit" value="Remove" class="btn btn-dark">
+          </form>
         }
       </li>
     </div>
