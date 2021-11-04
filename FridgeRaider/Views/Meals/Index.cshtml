@@ -6,7 +6,16 @@
     <h1 class="display-4">Meal Categories</h1>
 </div>
 
-<p>These are the categories of meals available to make:</p>
+<style>
+.categoryDisplay {
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+}
+</style>
+<hr>
+
+<ul class="categoryDisplay">
 @foreach (Category category in Model)
 {
     <div class="category">
@@ -16,3 +25,4 @@
         </a>
     </div>
 }
+</ul>

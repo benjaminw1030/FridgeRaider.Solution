@@ -1,17 +1,37 @@
 @{
-  ViewData["Title"] = "whatever";
+  ViewData["Title"] = "Category";
 }
 
 <div class="text-center">
-  <h1 class="display-4"></h1>
+    <h1 class="display-4">Meals in Category</h1>
 </div>
-<p>These are the meals in this category:</p>
+<hr>
+
+<style>
+.display {
+    -moz-column-count: 5;
+    -webkit-column-count: 5;
+    column-count: 5;
+}
+
+img {
+    width: 150px;
+}
+
+.meal {
+    height: 230px;
+}
+</style>
+
+<ul class="display">
 @foreach (Meal meal in Model)
 {
   <div class="meal">
     <a href="~/Meals/Details/@meal.IdMeal">
       <img src="@meal.StrMealThumb/preview" alt="">
-      <p>@meal.StrMeal</p>
+      <br>
+      @meal.StrMeal
     </a>
   </div>
 }
+</ul>

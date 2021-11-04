@@ -3,13 +3,23 @@
 }
 
 <div class="text-center">
-  <h1 class="display-4">Ingredients</h1>
+  <h1 class="display-4">Fridge Ingredients</h1>
 </div>
+<hr>
 
-<p>Ingredients in your fridge:</p>
+<style>
+.fridgeIngredients {
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+}
+</style>
+
+<ul class="fridgeIngredients">
 @foreach (var join in Model)
 {
   <div class="fridge">
-  <p>@join.StrIngredient</p>
+  <li>@join.StrIngredient</li>
   </div>
 }
+</ul>

@@ -4,8 +4,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
 
 @if(User.Identity.IsAuthenticated)
 {
@@ -16,14 +15,43 @@ else
 {
     <p>@Html.ActionLink("Login or register", "Index", "Account") to start adding food and saving favorite meals!</p>
 }
+</div>
+<hr>
 
-<p>A selection of available meals to enjoy:</p>
+<style>
+.mealDisplay {
+  columns: 5;
+  -webkit-columns: 5;
+  -moz-columns: 5;
+}
+
+img {
+    width: 150px;
+}
+
+.meal {
+    height: 230px;
+}
+
+body {
+background-image: url("https://2rdnmg1qbg403gumla1v9i2h-wpengine.netdna-ssl.com/wp-content/uploads/sites/3/2015/01/freezerOrFridgeFoods-139579260-770x533-1-650x428.jpg")no-repeat fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+</style>
+
+<ul class="mealDisplay">
 @foreach (Meal meal in Model)
 {
     <div class="meal">
         <a href="~/Meals/Details/@meal.IdMeal">
         <img src="@meal.StrMealThumb/preview" alt="">
-        <p>@meal.StrMeal</p>
+        <br>
+        @meal.StrMeal
         </a>
     </div>
 }
+</ul>

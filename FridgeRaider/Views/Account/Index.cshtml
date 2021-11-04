@@ -8,7 +8,8 @@
   @if(User.Identity.IsAuthenticated)
   {
     <p>Hello @User.Identity.Name!</p>
-    @Html.ActionLink("View Recipe Book", "RecipeBook")
+    <p>@Html.ActionLink("View Recipe Book", "RecipeBook")</p>
+    <p>@Html.ActionLink("View Fridge", "Fridge")</p>
     
   }
   else
