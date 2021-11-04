@@ -92,3 +92,13 @@ footer {
   background-color:sandybrown;
   color: rgba(0,0,0,.9);
 }
+
+.btn-dark {
+  background-color: darkorange;
+}
+
+.details-img {
+  float: right;
+  margin-left: 10px;
+  margin-bottom:10px;
+}

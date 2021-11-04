@@ -2,10 +2,13 @@
   ViewData["Title"] = "Ingredients";
 }
 
+<div class="text-center">
+  <h1 class="display-4">Fridge Ingredients</h1>
+  <h4>Click on an ingredient to add it to your fridge.</h4>
+</div>
+
 
 <div class="text-center">
-  <p>Click below to search for ingredients:</p>
-
   @using (Html.BeginForm("Search", "Ingredients"))
   {
     @Html.TextBox("searchString")

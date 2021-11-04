@@ -5,12 +5,31 @@
 <div class="text-center">
   <h1 class="display-4">@Model[0].StrMeal</h1>
 </div>
+<hr>
 
-<img src="@Model[0].StrMealThumb" alt="">
-<h2>@Model[0].StrCategory</h2>
-<h2>@Model[0].StrArea Cuisine</h2>
-<p><a href=@Model[0].StrYoutube>Check out the video</a></p>
-<p>Ingredients</p>
+<style>
+.threeLines {
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+}
+
+img {
+    width: 500px;
+}
+
+.meal {
+    height: 230px;
+}
+</style>
+
+<img src="@Model[0].StrMealThumb" alt="" class="details-img">
+<h2>@Model[0].StrCategory - @Model[0].StrArea Cuisine</h2>
+  @if (!String.IsNullOrEmpty(Model[0].StrYoutube))
+  {
+<p><a href=@Model[0].StrYoutube>Youtube Instructions</a></p>
+  }
+<p><b>Ingredients</b></p>
 <ul>
   @if (!String.IsNullOrEmpty(Model[0].StrIngredient1))
   {
@@ -93,7 +112,8 @@
     <li>@Model[0].StrIngredient20 - @Model[0].StrMeasure20</li>
   }
 </ul>
-<p>Directions</p>
+<br>
+<p><b>Directions</b></p>
 <p>@Model[0].StrInstructions</p>
 <p><a href=@Model[0].StrSource>Source</a></p>
 
@@ -101,8 +121,8 @@
 {
   @if (ViewBag.RequiredIngredients.Count > 0)
   {
-    <p>You need the following items in your fridge to make this meal:</p>
-    <ul>
+    <p><b>You need the following items in your fridge to make this meal:</b></p>
+    <ul class="threeLines">
       @foreach (string ingredient in ViewBag.RequiredIngredients)
       {
         <li>@ingredient</li>
