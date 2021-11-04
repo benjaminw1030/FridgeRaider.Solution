@@ -16,19 +16,20 @@ namespace FridgeRaider.Controllers
   {
     private readonly FridgeRaiderContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
-    
+
     public IngredientsController(UserManager<ApplicationUser> userManager, FridgeRaiderContext db)
     {
       _userManager = userManager;
       _db = db;
     }
-    
+
     public ActionResult Index(string letter)
     {
       var allIngredients = Ingredient.GetIngredients(EnvironmentVariables.ApiKey).ToList();
       var sortedIngredients = allIngredients.OrderBy(x => x.StrIngredient).ToList();
       ViewBag.FirstLetters = sortedIngredients.Select(s => s.StrIngredient[0]).Distinct().ToList();
-      
+      ViewBag.Fridge = Fridge(allIngredients);
+
       var ingredients = Ingredient.GetIngredients(EnvironmentVariables.ApiKey)
         .ToList()
         .Where(x => x.StrIngredient[0].ToString() == letter);
@@ -41,7 +42,7 @@ namespace FridgeRaider.Controllers
       .Where(x => x.IdIngredient == id).ToList();
       return View(ingredientDetails);
     }
-
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult> AddIngredient(ApplicationUser user, string idIngredient)
     {
@@ -53,6 +54,37 @@ namespace FridgeRaider.Controllers
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult Search(string searchString)
+    {
+      var allIngredients = Ingredient.GetIngredients(EnvironmentVariables.ApiKey).ToList();
+      var sortedIngredients = allIngredients.OrderBy(x => x.StrIngredient).ToList();
+      ViewBag.Fridge = Fridge(allIngredients);
+
+      var ingredients = Ingredient.GetIngredients(EnvironmentVariables.ApiKey)
+        .ToList()
+        .Where(x => x.StrIngredient.ToLower().Contains(searchString.ToLower()));
+      return View(ingredients);
+    }
+
+    public List<string> Fridge(List<Ingredient> allIngredients)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      IEnumerable<UserIngredient> userIngredients = _db.UserIngredients.ToList().Where(join => join.UserId == userId);
+      List<string> Fridge = new List<string> { };
+      foreach (Ingredient ingredient in allIngredients)
+      {
+        foreach (UserIngredient join in userIngredients)
+        {
+          if (ingredient.IdIngredient == join.IdIngredient)
+          {
+            Fridge.Add(ingredient.StrIngredient);
+          }
+        }
+      }
+      return Fridge;
     }
   }
 }

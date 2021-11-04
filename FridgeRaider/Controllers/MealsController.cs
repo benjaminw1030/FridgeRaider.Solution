@@ -89,6 +89,14 @@ namespace FridgeRaider.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = idMeal });
     }
+
+    [HttpPost]
+    public IActionResult Search(string searchString)
+    {
+      var result = Meal.SearchMealByName(EnvironmentVariables.ApiKey, searchString);
+      return View(result);
+    }
+
     [HttpPost]
     public ActionResult DeleteMeal(int joinId)
     {
